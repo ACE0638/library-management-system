@@ -9,7 +9,7 @@ public class Library {
     }
 
     public void addBook(String title, String author){
-        if (bookCount < bookCount){
+        if (bookCount < books.length){
             Book newBook = new Book(title, author);
             books[bookCount] = newBook;
             bookCount++;
@@ -30,9 +30,20 @@ public class Library {
     }
 
     public void borrowBook(String title){
+        title = title.trim();
+
+        if (title.isEmpty()) {
+            System.out.println("Invalid title. Please try again.");
+            return;
+        }
+
         for (int i = 0; i < bookCount; i++){
-            if (books[i].getTitle().equalsIgnoreCase(title)){
-                if (!books[i].isAvailable()){
+            String bookTitle = books[i].getTitle().trim();
+
+            System.out.println("Checking book: " + bookTitle + " | Available: " + books[i].isAvailable());
+
+            if (bookTitle.equalsIgnoreCase(title)){
+                if (books[i].isAvailable()){
                     books[i].setAvailable(false);
                     System.out.println("Book borrowed successfully: " + title);
                 } else {
@@ -45,8 +56,19 @@ public class Library {
     }
 
     public void returnBook(String title){
+        title = title.trim();
+
+        if (title.isEmpty()){
+            System.out.println("Invalid title. Please try again.");
+            return;
+        }
+
         for (int i = 0; i < bookCount; i++){
-            if (books[i].getTitle().equalsIgnoreCase(title)){
+            String bookTitle = books[i].getTitle().trim();
+
+            System.out.println("Checking book: " + bookTitle + " | Available: " + books[i].isAvailable());
+
+            if (bookTitle.equalsIgnoreCase(title)){
                 if (!books[i].isAvailable()){
                     books[i].setAvailable(true);
                     System.out.println("Book returned successfully: " + title);

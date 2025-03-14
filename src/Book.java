@@ -5,8 +5,8 @@ public class Book {
     private boolean isAvailable;
 
     public Book(String title, String author){
-        this.title = title;
-        this.author = author;
+        this.title = title.trim();
+        this.author = author.trim();
         this.isAvailable = true;
     }
 
@@ -23,7 +23,7 @@ public class Book {
     }
 
     public void setAvailable(boolean available) {
-        this.isAvailable = isAvailable;
+        this.isAvailable = available;
     }
 
     public void displayInfo(){
